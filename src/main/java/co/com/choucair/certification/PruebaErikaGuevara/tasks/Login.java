@@ -9,23 +9,27 @@ import net.serenitybdd.screenplay.actions.Enter;
 
 public class Login implements Task {
 
-    private String strUser;
-    private String strPassword;
-    public Login(String strUser, String strPassword) {
-        this.strUser = strUser;
-        this.strPassword = strPassword;
+    private String strName;
+    private String strLastName;
+    private String strEMail;
+
+    public Login(String strName, String strLastName, String strEMail) {
+        this.strName = strName;
+        this.strLastName = strLastName;
+        this.strEMail = strEMail;
     }
 
-    public static Login onThePage(String strUser, String strPassword){
-        return Tasks.instrumented(Login.class,strUser,strPassword);
+    public static Login onThePage(String strName, String strLastName, String strEMail){
+        return Tasks.instrumented(Login.class,strName,strLastName, strEMail);
     }
 
     @Override
     public <T extends Actor> void performAs(T actor) {
-        actor.attemptsTo(Click.on(ChoucairLoginPage.LOGIN_BUTTON),
-                Enter.theValue(strUser).into(ChoucairLoginPage.INPUT_USER),
-                Enter.theValue((strPassword)).into(ChoucairLoginPage.INPUT_PASSWORD),
-                Click.on(ChoucairLoginPage.ENTER_BUTTON)
+       actor.attemptsTo(
+                Enter.theValue(strName).into(ChoucairLoginPage.INPUT_NAME),
+                Enter.theValue(strLastName).into(ChoucairLoginPage.INPUT_LAST_NAME),
+                        Enter.theValue(strEMail).into(ChoucairLoginPage.INPUT_E_MAIL),
+                        Click.on(ChoucairLoginPage.INPUT_BUTTON)
         );
     }
 }

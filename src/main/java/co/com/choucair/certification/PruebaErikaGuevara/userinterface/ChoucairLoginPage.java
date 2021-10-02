@@ -5,12 +5,17 @@ import net.serenitybdd.screenplay.targets.Target;
 import org.openqa.selenium.By;
 
 public class ChoucairLoginPage extends PageObject {
-    public static final Target LOGIN_BUTTON = Target.the("button that show us the form to login")
-            .located(By.xpath("//div[@class='d-none d-lg-block']//strong[contains(text(),'Ingresar')]"));
-    public static final Target INPUT_USER =Target.the("where do we write the user")
-            .located(By.id("username"));
-    public static final Target INPUT_PASSWORD = Target.the("where do we write the password")
-            .located(By.id("password"));
-    public static final Target ENTER_BUTTON = Target.the("button to confirm login")
-            .located(By.xpath("//button[contains(@class,'btn btn-primary')]"));
+    /*public static final Target LOGIN_BUTTON = Target.the("Button Join Today")
+            .located(By.xpath("//a[@class='unauthenticated-nav-bar__dropdown-menu-sign-up']"));*/
+    public static final Target INPUT_BUTTON = Target.the("button to confirm login")
+            .located(By.xpath("//a[@class,'btn btn-blue']"));
+    public static final Target INPUT_NAME =Target.the("where do we write the user")
+            .located(By.id("firstName"));
+    public static final Target INPUT_LAST_NAME =Target.the("where do we write the user")
+            .located(By.id("lastName"));
+    public static final Target INPUT_E_MAIL =Target.the("where do we write the user")
+            .located(By.id("email"));
+    /*public static final Target INPUT_PASSWORD = Target.the("where do we write the password")
+            .located(By.id("password"));*/
+
 }

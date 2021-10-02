@@ -1,6 +1,6 @@
 package co.com.choucair.certification.PruebaErikaGuevara.tasks;
 
-import co.com.choucair.certification.PruebaErikaGuevara.userinterface.SearchCoursePage;
+import co.com.choucair.certification.PruebaErikaGuevara.userinterface.ChoucairLoginPage;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
@@ -8,20 +8,27 @@ import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
 
 public class Search implements Task {
-    private String course;
+    private String strName;
+    private String strLastName;
+    private String strEMail;
 
-    public Search(String course){
-        this.course =course;
+    public Search(String strName, String strLastName, String strEMail) {
+        this.strName = strName;
+        this.strLastName = strLastName;
+        this.strEMail = strEMail;
     }
 
-    public static Search the(String course) {
-        return Tasks.instrumented(Search.class,course);
+    public static Search onThePage(String strName, String strLastName, String strEMail){
+        return Tasks.instrumented(Search.class,strName,strLastName, strEMail);
     }
+
     @Override
-    public  <T extends Actor> void  performAs(T actor){
-        actor.attemptsTo(Click.on(SearchCoursePage.BUTTON_UC),
-                Enter.theValue(course).into(SearchCoursePage.INPUT_COURSE),
-                Click.on(SearchCoursePage.BUTTON_GO),
-                Click.on(SearchCoursePage.SELECT_COURSE));
+    public <T extends Actor> void performAs(T actor) {
+        actor.attemptsTo(
+                Enter.theValue(strName).into(ChoucairLoginPage.INPUT_NAME),
+                Enter.theValue(strLastName).into(ChoucairLoginPage.INPUT_LAST_NAME),
+                Enter.theValue(strEMail).into(ChoucairLoginPage.INPUT_E_MAIL),
+                Click.on(ChoucairLoginPage.INPUT_BUTTON)
+        );
     }
 }
